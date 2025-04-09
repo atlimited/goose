@@ -26,6 +26,8 @@ export const openrouter_models = ['anthropic/claude-3.5-sonnet'];
 
 export const azure_openai_models = ['gpt-4o'];
 
+export const sambanova_models = ['Meta-Llama-3.1-405B-Instruct', 'Meta-Llama-3.3-70B-Instruct'];
+
 export const gcp_vertex_ai_models = [
   'claude-3-7-sonnet@20250219',
   'claude-3-5-sonnet-v2@20241022',
@@ -47,6 +49,7 @@ export const default_models = {
   azure_openai: 'gpt-4o',
   gcp_vertex_ai: 'gemini-2.0-flash-001',
   aws_bedrock: 'us.anthropic.claude-3-7-sonnet-20250219-v1:0',
+  sambanova: 'Meta-Llama-3.1-405B-Instruct',
 };
 
 export function getDefaultModel(key: string): string | undefined {
@@ -71,6 +74,7 @@ export const required_keys = {
   ],
   'GCP Vertex AI': ['GCP_PROJECT_ID', 'GCP_LOCATION'],
   'AWS Bedrock': ['AWS_PROFILE'],
+  SambaNova: ['SAMBANOVA_API_KEY'],
 };
 
 export const default_key_value = {
@@ -79,6 +83,8 @@ export const default_key_value = {
   OLLAMA_HOST: 'localhost',
   GCP_LOCATION: 'us-central1',
   AZURE_OPENAI_API_VERSION: '2024-10-21',
+  SAMBANOVA_HOST: 'https://api.sambanova.ai',
+  SAMBANOVA_BASE_PATH: 'v1',
 };
 
 export const supported_providers = [
@@ -92,6 +98,7 @@ export const supported_providers = [
   'Azure OpenAI',
   'GCP Vertex AI',
   'AWS Bedrock',
+  'SambaNova',
 ];
 
 export const model_docs_link = [
@@ -107,6 +114,7 @@ export const model_docs_link = [
   { name: 'Ollama', href: 'https://ollama.com/library' },
   { name: 'GCP Vertex AI', href: 'https://cloud.google.com/vertex-ai' },
   { name: 'AWS Bedrock', href: 'https://console.aws.amazon.com/bedrock/home#/model-catalog' },
+  { name: 'SambaNova', href: 'https://api.sambanova.ai' },
 ];
 
 export const provider_aliases = [
@@ -120,4 +128,5 @@ export const provider_aliases = [
   { provider: 'Azure OpenAI', alias: 'azure_openai' },
   { provider: 'GCP Vertex AI', alias: 'gcp_vertex_ai' },
   { provider: 'AWS Bedrock', alias: 'aws_bedrock' },
+  { provider: 'SambaNova', alias: 'sambanova' },
 ];

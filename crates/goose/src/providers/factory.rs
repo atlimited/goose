@@ -10,6 +10,7 @@ use super::{
     ollama::OllamaProvider,
     openai::OpenAiProvider,
     openrouter::OpenRouterProvider,
+    sambanova::SambanovaProvider,
 };
 use crate::model::ModelConfig;
 use anyhow::Result;
@@ -26,6 +27,7 @@ pub fn providers() -> Vec<ProviderMetadata> {
         OllamaProvider::metadata(),
         OpenAiProvider::metadata(),
         OpenRouterProvider::metadata(),
+        SambanovaProvider::metadata(),
     ]
 }
 
@@ -41,6 +43,7 @@ pub fn create(name: &str, model: ModelConfig) -> Result<Box<dyn Provider + Send 
         "openrouter" => Ok(Box::new(OpenRouterProvider::from_env(model)?)),
         "gcp_vertex_ai" => Ok(Box::new(GcpVertexAIProvider::from_env(model)?)),
         "google" => Ok(Box::new(GoogleProvider::from_env(model)?)),
+        "sambanova" => Ok(Box::new(SambanovaProvider::from_env(model)?)),
         _ => Err(anyhow::anyhow!("Unknown provider: {}", name)),
     }
 }

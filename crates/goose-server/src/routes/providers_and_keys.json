@@ -58,5 +58,11 @@
         "description": "Connect to LLMs via AWS Bedrock",
         "models": ["us.anthropic.claude-3-7-sonnet-20250219-v1:0"],
         "required_keys": ["AWS_PROFILE"]
+    },
+    "sambanova": {
+        "name": "SambaNova",
+        "description": "Use Meta-Llama-3.1-405B-Instruct model via SambaNova API",
+        "models": ["Meta-Llama-3.1-405B-Instruct", "Meta-Llama-3.3-70B-Instruct"],
+        "required_keys": ["SAMBANOVA_API_KEY", "SAMBANOVA_HOST", "SAMBANOVA_BASE_PATH"]
     }
 }

@@ -4,7 +4,7 @@ use goose::message::{Message, MessageContent};
 use goose::providers::base::Provider;
 use goose::providers::errors::ProviderError;
 use goose::providers::{
-    anthropic, azure, bedrock, databricks, google, groq, ollama, openai, openrouter,
+    anthropic, azure, bedrock, databricks, google, groq, ollama, openai, openrouter, sambanova,
 };
 use mcp_core::content::Content;
 use mcp_core::tool::Tool;
@@ -473,7 +473,21 @@ async fn test_google_provider() -> Result<()> {
         "Google",
         &["GOOGLE_API_KEY"],
         None,
-        google::GoogleProvider::default,
+        || google::GoogleProvider::default(),
+    )
+    .await
+}
+
+#[tokio::test]
+async fn test_sambanova_provider() -> Result<()> {
+    test_provider(
+        "SambaNova",
+        &["SAMBANOVA_API_KEY"],
+        Some(HashMap::from([
+            ("SAMBANOVA_HOST", Some("https://api.sambanova.ai".to_string())),
+            ("SAMBANOVA_BASE_PATH", Some("v1".to_string())),
+        ])),
+        || sambanova::SambanovaProvider::default(),
     )
     .await
 }
